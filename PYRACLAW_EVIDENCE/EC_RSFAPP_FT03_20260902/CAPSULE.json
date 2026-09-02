@@ -1,0 +1,53 @@
+{
+  "capsule": "EC_RSFAPP_FT03_20260902",
+  "register": "PYRACLAW Cybersecurity Division",
+  "purpose": "Freeze and anchor the RSFapp Flight Deck (fT_03) deliverable and its source lineage as an IP-disclosure evidence capsule, in support of a future patent filing.",
+  "actor": "byron (dd7agents@gmail.com) via Claude Code session",
+  "artifact": {
+    "file": "rsfapp_fT03.html",
+    "sha256": "6df9545559dbbe10f175df93096a4510322b6585e394225e414c8fcb781f2364",
+    "bytes": 4250742,
+    "published_at": "https://claude.ai/code/artifact/f7b6da1d-7493-4f6d-a781-a14af2751f3c",
+    "description": "Investor demo flight deck: live RSFS swarm coherence, B300 fleet telemetry, in-browser canonical 7-dip seal console (pyra_seal_canon v1.0.0 port), hash-chained demo ledger, P32 trinity architecture, uiRSFS iAiA film."
+  },
+  "lineage_sha256": {
+    "PyraClaw_1nvestor_Pitch.pptx": "073d17ed0625a7b1f3cef0bc7142710d61d16a72381446e6c6f5fdb55cb3b998",
+    "PyraClaw_Investor_Briefing_UtH_16p.pptx": "274ccacd2231dfc812d98457907aa6afdcd4bf5d6caad452ddab13f6819a4487",
+    "pyraclaw_p32_manifest.json": "abb8384ce89acf5f857c22689358b68839e6483e5b503afc209ed1a6cfa626e0",
+    "PYRACLAW_TRINITY_SPINE_20260901.zip": "b9ea48d941964b586bbb74dc2f91c84735679f6865118fd7f0b35f6aa880cd00",
+    "PYRACLAW_SEAL_CANON_KIT_20260901.zip": "0189720810ea95a9653640a3572d0639127c613f7da1a2ca2f523ab0cd65cdc7",
+    "pClaw__Corporate_Refined_Presentation.pdf": "e6bb256c28512382dfe147e26ea72ba7bf74ff896a92d5d4830d2dcee470f080",
+    "master_b300_breakthrough.ipynb": "42b43b2003942cc165a47b417588cd519a4c5397c74dc14e47517e2c28f1f62a",
+    "rsf_iAiA.mp4": "fe0a779bacadb7b776a5a1924386fca5bd11ac0fce940627526a8fcf99a2fb5e"
+  },
+  "sidecar": {
+    "file": "RSFAPP_SHA256.txt",
+    "sha256": "0eb7bcdc875d9486b830cf13c9e5c10a38e9201ccedc80ad66b87bd69f72f794"
+  },
+  "pack_head": "51feecc8c36ddd2c3a88006386520e9283d8f833a7eee7582e6d690ab560bd4c",
+  "captured_utc": "2026-09-02T08:36:51+00:00",
+  "tai_note": "TAI = UTC + 37 s at capture",
+  "pipeline_status": {
+    "close_digest_sidecar": "DONE \u2014 recomputed in-session, no hash simulated",
+    "ledger_seal": "PENDING \u2014 pyraclaw-evidence-mcp-server not connected in this session; side-car is pack-integrity only, not a ledger seal",
+    "deposit_doi": "NOT PERFORMED \u2014 no simulated DOI; a real Zenodo deposit is a separate human act",
+    "external_anchor": "THIS GIT COMMIT \u2014 the commit hash + timestamp anchor the pack_head"
+  },
+  "seal_when_connected": {
+    "tool": "pyraclaw_seal_evidence",
+    "args": {
+      "actor": "byron/DD7",
+      "label": "EC_RSFAPP_FT03_20260902",
+      "tags": [
+        "rsfapp",
+        "ip-disclosure",
+        "to-patent",
+        "fT_03"
+      ],
+      "content_sha256": "6df9545559dbbe10f175df93096a4510322b6585e394225e414c8fcb781f2364",
+      "store_preview": false
+    },
+    "then": "pyraclaw_verify_ledger \u2192 publish head_hash externally"
+  },
+  "guarantee_boundary": "Proven here: bit-exact digests of the named files at capture time, anchored by this commit. Never claimed: content truth, confidentiality, legal effect. This capsule is not a patent filing and confers no patent rights; priority comes only from filing with a patent office through counsel."
+}
