@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "pyraclaw_evidence": {
+      "type": "http",
+      "url": "${PYRA_EVIDENCE_URL}",
+      "headers": {
+        "Authorization": "Bearer ${PYRA_EVIDENCE_BEARER}"
+      }
+    }
+  }
+}
