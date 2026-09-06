@@ -2,7 +2,7 @@
   "mcpServers": {
     "pyraclaw_evidence": {
       "type": "http",
-      "url": "${PYRA_EVIDENCE_URL}",
+      "url": "https://${PYRA_EVIDENCE_HOST:-evidence-os.invalid}${PYRA_EVIDENCE_PATH:-/mcp}",
       "headers": {
         "Authorization": "Bearer ${PYRA_EVIDENCE_BEARER}"
       }

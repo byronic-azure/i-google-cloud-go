@@ -7,10 +7,13 @@ being PENDING. Nothing here is simulated: until preflight passes, the honest
 status stays PENDING.
 
 **Two values only the operator holds** (per the Trinity Spine runbook, the
-bearer travels in a header — never in the URL or argv):
+bearer travels in a header — never in the URL or argv). The scheme is not a
+value: `https://` is baked into the config and the preflight, so a cleartext
+endpoint is unrepresentable.
 
 ```
-export PYRA_EVIDENCE_URL="https://<your-evidence-os-endpoint>"
+export PYRA_EVIDENCE_HOST="<host[:port] of your Evidence-OS endpoint>"
+export PYRA_EVIDENCE_PATH="/mcp"        # optional; default /mcp
 export PYRA_EVIDENCE_BEARER="<bearer>"
 ```
 
@@ -23,24 +26,29 @@ PENDING), deploy it first — every step below is wiring, not deployment.
 python3 PYRACLAW_EVIDENCE/preflight_evidence_mcp.py
 ```
 
-PASS = the endpoint answers MCP `initialize` and lists all five doctrine tools
-(`pyraclaw_verify_ledger`, `pyraclaw_seal_evidence`, `pyraclaw_generate_verdict`,
-`pyraclaw_trace_lineage`, `pyraclaw_list_entries`). The script never calls a
-tool — listing is not sealing.
+PASS = the endpoint answers MCP `initialize` (the negotiated protocol version
+is validated and carried on every subsequent request) and lists all five
+doctrine tools (`pyraclaw_verify_ledger`, `pyraclaw_seal_evidence`,
+`pyraclaw_generate_verdict`, `pyraclaw_trace_lineage`, `pyraclaw_list_entries`).
+The script never calls a tool — listing is not sealing — and it refuses HTTP
+redirects outright, so the bearer is never re-sent toward a Location header.
 
 ### 1 · Local Claude Code (WSL / DD7Ai)
 
-`.mcp.json` at the repo root already declares the server, with both values
-expanded from the environment — the bearer never lands in a file:
+`.mcp.json` at the repo root already declares the server, with host, path and
+bearer expanded from the environment — the bearer never lands in a file, and
+the `https://` scheme is fixed in the config so no environment value can
+downgrade the transport (the `.invalid` default host is IETF-reserved and can
+never resolve, so an unset host fails closed at connect):
 
 ```json
 { "mcpServers": { "pyraclaw_evidence": {
     "type": "http",
-    "url": "${PYRA_EVIDENCE_URL}",
+    "url": "https://${PYRA_EVIDENCE_HOST:-evidence-os.invalid}${PYRA_EVIDENCE_PATH:-/mcp}",
     "headers": { "Authorization": "Bearer ${PYRA_EVIDENCE_BEARER}" } } } }
 ```
 
-Put the two exports in `~/.bashrc` (or a secrets manager), start a **new**
+Put the exports in `~/.bashrc` (or a secrets manager), start a **new**
 `claude` session in this repo, approve the project server when prompted, and
 confirm with `/mcp`. MCP servers load at session start — an already-running
 session cannot hot-mount one.
